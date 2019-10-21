@@ -7,12 +7,21 @@ import {
 } from 'typeorm'
 
 @Entity()
-export class Item {
+export class Product {
   @PrimaryGeneratedColumn('uuid')
   id: string
 
   @Column()
   name: string
+
+  @Column()
+  image: string
+
+  @Column()
+  expires_in: number
+
+  @Column()
+  unit: string
 
   @CreateDateColumn()
   created_at: string

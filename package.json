@@ -19,6 +19,7 @@
     "fastify-jwt": "^1.1.0",
     "fastify-oas": "^2.3.3",
     "mssql": "^5.1.0",
+    "pino-pretty": "^3.2.2",
     "reflect-metadata": "^0.1.13",
     "sql.js": "^1.0.0",
     "typeorm": "^0.2.19"
