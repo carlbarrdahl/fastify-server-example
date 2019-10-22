@@ -4,11 +4,11 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn
-} from 'typeorm'
+} from "typeorm"
 
 @Entity()
 export class Product {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn("uuid")
   id: string
 
   @Column()

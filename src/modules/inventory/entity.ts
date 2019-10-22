@@ -6,12 +6,12 @@ import {
   UpdateDateColumn,
   ManyToOne,
   JoinColumn
-} from 'typeorm'
-import { Product } from '../products/entity'
+} from "typeorm"
+import { Product } from "../products/entity"
 
 @Entity()
 export class Inventory {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn("uuid")
   id: string
 
   @ManyToOne(type => Product, { cascade: true })
@@ -21,7 +21,7 @@ export class Inventory {
   @Column()
   quantity: number
 
-  @Column('date')
+  @Column("date")
   expiry_date: string
 
   @CreateDateColumn()

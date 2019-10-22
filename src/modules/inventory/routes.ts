@@ -69,16 +69,6 @@ export default function inventoryHandler(server, options, next) {
       res.code(200).send({})
     }
   )
-  server.post(
-    "/inventory/:id/print",
-    { schema: printInventorySchema, preValidation: [server.authenticate] },
-    async (req, res) => {
-      req.log.info(`print label for ${req.params.id}`)
-
-      const inventory = await server.db.inventory.findOne(req.params.id)
-      res.send({ status: "printing..." })
-    }
-  )
   next()
 }
 

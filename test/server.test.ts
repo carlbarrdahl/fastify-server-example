@@ -161,24 +161,4 @@ describe("Server", () => {
       }
     )
   })
-  test("POST /inventory/:id/print prints label for an inventory", done => {
-    const { id } = inventory[1]
-    server.inject(
-      {
-        method: "POST",
-        url: `/inventory/${id}/print`,
-        payload: {},
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      },
-      (err, res) => {
-        expect(res.statusCode).toBe(200)
-        expect(JSON.parse(res.payload)).toEqual({
-          status: "printing inventory"
-        })
-        done(err)
-      }
-    )
-  })
 })
