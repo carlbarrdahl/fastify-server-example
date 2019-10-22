@@ -16,14 +16,14 @@ function createServer() {
     exposeRoute: true,
     swagger: {
       info: {
-        title: "happy-faces-api",
+        title: "inventory api",
         description: "api documentation",
         version: "0.1.0"
       },
       servers: [
-        { url: "http://localhost:1337", description: "development" },
+        { url: "http://localhost:3000", description: "development" },
         {
-          url: "https://ql-swr-api-dev.azurewebsites.net",
+          url: "https://<production-url>",
           description: "production"
         }
       ],
