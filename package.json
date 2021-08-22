@@ -17,6 +17,7 @@
     "dotenv": "^8.6.0",
     "fastify": "^2.15.3",
     "fastify-cors": "^6.0.2",
+    "fastify-env": "^2.1.1",
     "fastify-jwt": "^1.5.0",
     "fastify-oas": "^2.7.2",
     "pino-pretty": "^3.6.1",

@@ -8,10 +8,38 @@ import productsHandler from "./modules/products/routes"
 import inventoryHandler from "./modules/inventory/routes"
 import loginHandler from "./modules/login/routes"
 
+// .env options for fastifyEnv
+//import envSchema from 'env-schema';
+
+const envSchema = {
+  type: 'object',
+  required: ['KEY1', 'KEY2'],
+  properties: {
+    KEY1: {
+      type: 'string'
+    },
+    KEY2: {
+      type: 'number'
+    }
+  }
+}
+const envOptions = {
+  confKey: 'config', // optional, default: 'config'
+  schema: envSchema,
+  dotenv: true // read .env
+}
+
+
 function createServer() {
   const server = fastify({ logger: { prettyPrint: true } })
   // cors not working with typescript compiler settings
   //server.use(cors())
+
+  server.register(require("fastify-env"), envOptions)
+  // log config. hmmm. config is present but cannot be printed ...
+  server.after(()=>{console.log("after",server["config"])})
+  
+
 
   server.register(require('fastify-cors'), { 
     // put your options here
@@ -59,14 +87,9 @@ function createServer() {
     res.send({ error })
   })
 
-  /* *
-  //generate temporary token to be used in app
-
   server.ready(() => {
-    const token = server.jwt.sign({ user_id: 'swr_user_id' })
-    console.log(token)
+    console.log("ready",server["config"])
   })
-  /* */
 
   return server
 }
