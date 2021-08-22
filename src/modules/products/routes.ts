@@ -16,6 +16,30 @@ export default (server, options, next) => {
       res.send(products)
     }
   )
+
+  server.post(
+    "/products",
+    { schema: listProductsSchema, preValidation: [server.authenticate] },
+    async (req, res) => {
+      const { name, image, expires_in, unit } = req.body
+      if (!name || !image || !expires_in || !unit) {
+        req.log.info(`product specs required!`)
+        return res.code(404).send("product specs required!")
+      }
+
+      req.log.info(`insert product ${name} `)
+      const product = await server.db.products.save({
+        name,
+        image,
+        expires_in,
+        unit
+      })
+
+      res.code(201).send(product)
+    }
+  )
+
+
   server.delete(
     "/products/:id",
     { schema: deleteProductSchema, preValidation: [server.authenticate] },
