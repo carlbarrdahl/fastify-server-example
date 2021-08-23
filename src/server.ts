@@ -10,7 +10,6 @@ import loginHandler from "./modules/login/routes"
 
 // .env options for fastifyEnv
 //import envSchema from 'env-schema';
-
 const envSchema = {
   type: 'object',
   required: ['KEY1', 'KEY2'],
@@ -28,7 +27,6 @@ const envOptions = {
   schema: envSchema,
   dotenv: true // read .env
 }
-
 
 function createServer() {
   const server = fastify({ logger: { prettyPrint: true } })
@@ -89,6 +87,7 @@ function createServer() {
 
   server.ready(() => {
     console.log("ready",server["config"])
+    //console.log("ready",server.config)
   })
 
   return server
