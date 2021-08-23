@@ -3,44 +3,22 @@ import fastify from "fastify"
 
 import auth from "./plugins/auth"
 import db from "./plugins/db"
-//import env from "./plugins/env"
+import env from "./plugins/env"
 import healthHandler from "./modules/health/routes"
 import productsHandler from "./modules/products/routes"
 import inventoryHandler from "./modules/inventory/routes"
 import loginHandler from "./modules/login/routes"
-
-// .env options for fastifyEnv
-//import envSchema from 'env-schema';
-
-const envSchema = {
-  type: 'object',
-  required: ['KEY1', 'KEY2'],
-  properties: {
-    KEY1: {
-      type: 'string'
-    },
-    KEY2: {
-      type: 'number'
-    }
-  }
-}
-const envOptions = {
-  confKey: 'config', // optional, default: 'config'
-  schema: envSchema,
-  dotenv: true // read .env
-}
 
 function createServer() {
   const server = fastify({ logger: { prettyPrint: true } })
   // cors not working with typescript compiler settings
   //server.use(cors())
 
-  //server.register(env)
-  server.register(require("fastify-env"), envOptions)
+  server.register(env)
   // log config. hmmm. config is present but cannot be printed ...
   // with @types file config is OK when building, but not in dev
-  //server.after(()=>{console.log("after",server.config)})
-  server.after(()=>{console.log("after",server["config"])})
+  server.after(()=>{console.log("after",server.config)})
+  //server.after(()=>{console.log("after",server["config"])})
   
 
 
