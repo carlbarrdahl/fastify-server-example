@@ -9,12 +9,17 @@ import inventoryHandler from "./modules/inventory/routes"
 import loginHandler from "./modules/login/routes"
 
 function createServer() {
-  const server = fastify({ logger: { prettyPrint: true } })
+  const server = fastify({ logger: { prettyPrint: true, level: 'warn' } })
 
   server.register(env)
-  server.after(()=>{
-    if (!server.config) throw ("Invalid config")
-    console.log("after",server.config)
+  server.after(() => {
+    if (!server.config) {
+      server.log.error("Invalid config")
+      throw ("Invalid config")
+    }
+    //console.log("after",server.config)
+    const msg = JSON.stringify(server.config)
+    server.log.info(`Config: ${msg}`)
   })
 
 
@@ -34,7 +39,7 @@ function createServer() {
       servers: [
         { url: "http://localhost:3000", description: "development" },
         {
-          url: "https://<production-url>",
+          url: "https://akugel.uber.space/fastify",  // testing
           description: "production"
         }
       ],

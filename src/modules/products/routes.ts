@@ -6,12 +6,12 @@ export default (server, options, next) => {
     { schema: listProductsSchema, preValidation: [server.authenticate] },
     async (req, res) => {
       req.log.info(`list products from db`)
-
+      /*
       console.log("----")
 
       console.log(server.db)
       console.log("----")
-
+      */
       const products = await server.db.products.find()
       res.send(products)
     }
