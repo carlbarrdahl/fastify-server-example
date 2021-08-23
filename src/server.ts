@@ -1,5 +1,4 @@
 import fastify from "fastify"
-//import cors from "cors"
 
 import auth from "./plugins/auth"
 import db from "./plugins/db"
@@ -11,12 +10,8 @@ import loginHandler from "./modules/login/routes"
 
 function createServer() {
   const server = fastify({ logger: { prettyPrint: true } })
-  // cors not working with typescript compiler settings
-  //server.use(cors())
 
   server.register(env)
-  // log config. hmmm. config is present but cannot be printed ...
-  // with @types file config is OK when building, but not in dev
   server.after(()=>{
     if (!server.config) throw ("Invalid config")
     console.log("after",server.config)
