@@ -1,5 +1,7 @@
 import fp from "fastify-plugin"
 
+// see also https://github.com/fastify/fastify-plugin
+
 const schema = {
   type: 'object',
   //required: ['KEY1', 'KEY2'],
@@ -9,6 +11,9 @@ const schema = {
     },
     KEY2: {
       type: 'number'
+    },
+    SECRET: {
+      type: "string"
     }
   }
 }

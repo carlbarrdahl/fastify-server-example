@@ -16,8 +16,10 @@ notBefore: expressed in seconds or a string describing a time span vercel/ms.
 */
 
 export default fp((server, opts, next) => {
+  // check secret in config
+  if (!server.config.SECRET) throw ("Secret missing!")
   server.register(jwt, {
-    secret: "test1234"
+    secret: server.config.SECRET
   })
   server.decorate("authenticate", async (req, res) => {
     //console.log("Auth:", req,res)
