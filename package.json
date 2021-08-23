@@ -15,14 +15,13 @@
   "license": "ISC",
   "dependencies": {
     "dotenv": "^8.6.0",
-    "fastify": "^2.15.3",
+    "fastify": "^3.20.2",
     "fastify-cors": "^6.0.2",
     "fastify-env": "^2.1.1",
-    "fastify-jwt": "^1.5.0",
-    "fastify-oas": "^2.7.2",
-    "pino-pretty": "^3.6.1",
+    "fastify-jwt": "^3.0.1",
+    "fastify-oas": "^3.0.8",
+    "pino-pretty": "^6.0.0",
     "reflect-metadata": "^0.1.13",
-    "sql.js": "^1.6.1",
     "sqlite3": "^5.0.2",
     "typeorm": "^0.2.37"
   },
@@ -32,7 +31,7 @@
     "jest": "^27.0.6",
     "nodemon": "^2.0.12",
     "ts-jest": "^27.0.5",
-    "ts-node": "^8.10.2",
-    "typescript": "^3.9.10"
+    "ts-node": "^10.2.1",
+    "typescript": "^4.3.5"
   }
 }
