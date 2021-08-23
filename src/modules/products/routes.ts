@@ -1,4 +1,4 @@
-import { listProductsSchema, deleteProductSchema } from "./schema"
+import { listProductsSchema, deleteProductSchema, postProductSchema } from "./schema"
 
 export default (server, options, next) => {
   server.get(
@@ -19,7 +19,7 @@ export default (server, options, next) => {
 
   server.post(
     "/products",
-    { schema: listProductsSchema, preValidation: [server.authenticate] },
+    { schema: postProductSchema, preValidation: [server.authenticate] },
     async (req, res) => {
       const { name, image, expires_in, unit } = req.body
       if (!name || !image || !expires_in || !unit) {
