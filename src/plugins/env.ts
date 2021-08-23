@@ -4,7 +4,7 @@ import fp from "fastify-plugin"
 
 const schema = {
   type: 'object',
-  //required: ['KEY1', 'KEY2'],
+  required: ['SECRET'],
   properties: {
     KEY1: {
       type: 'string'
@@ -25,7 +25,7 @@ const options = {
 
 
 export default fp((server, opts, next) => {
-    server.register(require("fastify-env"), options)
+  server.register(require("fastify-env"), options)
   next()
 })
 
