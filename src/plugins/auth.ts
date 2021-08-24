@@ -52,12 +52,15 @@ export default fp((server, opts, next) => {
       if (auth == undefined)
         throw("No credentials")
       const credentials = Buffer.from(auth.split(" ")[1],"base64").toString("utf-8")
-      console.log("Auth:",credentials.split(":"))
+      const authData = credentials.split(":")
+      console.log("Auth:",authData)
       // user id should be derived from database check
       // const tok = await res.jwtSign({ user_id: credentials.split(":")[0] })
       const tok = await res.jwtSign({ user_id: 42} , {expiresIn:3600})
       console.log("Token:",tok)
-      res.send(tok)
+      req.user = authData[0]
+      req.token = tok
+      //res.send(tok)
     } catch (err) {
       res.send(err)
     }

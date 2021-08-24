@@ -12,21 +12,21 @@ import { Product } from "../products/entity"
 @Entity()
 export class Inventory {
   @PrimaryGeneratedColumn("uuid")
-  id: string = ""
+  id?: string
 
   @ManyToOne(type => Product, { cascade: true })
   @JoinColumn()
-  product: Product = new Product()
+  product?: Product
 
   @Column()
-  quantity: number = 0
+  quantity?: number
 
   @Column("date")
-  expiry_date: string = ""
+  expiry_date?: string
 
   @CreateDateColumn()
-  created_at: string = ""
+  created_at?: string
 
   @UpdateDateColumn()
-  updated_at: string = ""
+  updated_at?: string
 }

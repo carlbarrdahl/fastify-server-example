@@ -21,6 +21,7 @@ export default (server, options, next) => {
     "/products",
     { schema: postProductSchema, preValidation: [server.authenticate] },
     async (req, res) => {
+      //console.log(JSON.stringify(req.body))
       const { name, image, expires_in, unit } = req.body
       if (!name || !image || !expires_in || !unit) {
         req.log.info(`product specs required!`)
