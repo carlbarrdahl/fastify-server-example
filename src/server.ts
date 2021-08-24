@@ -6,7 +6,7 @@ import env from "./plugins/env"
 import healthHandler from "./modules/health/routes"
 import productsHandler from "./modules/products/routes"
 import inventoryHandler from "./modules/inventory/routes"
-import loginHandler from "./modules/login/routes"
+import loginHandler from "./modules/users/routes"
 
 function createServer() {
   const server = fastify({ logger: { prettyPrint: true, level: 'info' } })

@@ -43,44 +43,6 @@ export default fp((server, opts, next) => {
     }
   })
 
-  server.decorate("login", async (req, res) => {
-    //console.log("Login:", req,res)
-    try {
-      /* call like this
-      http -v localhost:3000/login -a user:123
-      */
-      //console.log("Req:",req.headers)
-      const auth = req.headers.authorization
-      if (auth == undefined)
-        throw("No credentials")
-      const credentials = Buffer.from(auth.split(" ")[1],"base64").toString("utf-8")
-      const authData = credentials.split(":")
-      // user id should be derived from database check
-      // const tok = await res.jwtSign({ user_id: credentials.split(":")[0] })
-      if (authData[0] == "user") throw ("fake")
-      const uid = 42 // get from database else thow "not authorized" 
-      /* payload options are
-        * `audience`
-        * `issuer`
-        * `jwtid`
-        * `subject`
-        * `noTimestamp`
-        * `header`
-        * `keyid`
-      */
-      const tok = await res.jwtSign({ user_id: uid ,
-        audience:"client", issuer: "fastify"
-      },
-        {expiresIn:3600})
-      if (!tok) throw("not authorized")
-      req.log.info(`Login: ${uid}, ${tok}`)
-      res.send({"token":tok})
-    } catch (err) {
-      req.log.info(`Login error: ${err}`)
-      res.code(500).send({"error":err})
-    }
-  })
-
   
   next()
 })
