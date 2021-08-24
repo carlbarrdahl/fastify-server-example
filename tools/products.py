@@ -6,7 +6,8 @@ import requests
 import json
 
 
-BASEURL = "http://localhost:3000/"
+BASEURL = "http://localhost"
+PORT = 3000
 #BASEURL = "https://akugel.uber.space/fastify/"
 PROD = "products"
 LOGIN = "login"
@@ -32,6 +33,12 @@ else:
     msgs = 1000
 print("MSGS:",msgs)
 
+if len(sys.argv) > 2:
+    PORT = sys.argv[2]
+BASEURL += ":"+str(PORT) + "/"
+
+print(BASEURL)
+
 
 token = login()["token"]
 if token == None:
@@ -52,7 +59,7 @@ for i in range(msgs):
         p = Product(i)
         pp = json.dumps(p.__dict__)
         #print(pp)
-        url = BASEURL+PROD
+        url = BASEURL + PROD
         r = requests.post(url=url,headers = hdr, data = pp)
         #print(r.status_code)
         pr = json.loads(r.text)
