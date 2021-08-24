@@ -16,6 +16,7 @@
   "dependencies": {
     "dotenv": "^8.6.0",
     "fastify": "^3.20.2",
+    "fastify-bcrypt": "^0.1.1",
     "fastify-cors": "^6.0.2",
     "fastify-env": "^2.1.1",
     "fastify-jwt": "^3.0.1",

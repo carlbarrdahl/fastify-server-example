@@ -1,5 +1,6 @@
 import {
   Entity,
+  Unique,
   PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
@@ -8,6 +9,7 @@ import {
 
 
 @Entity()
+@Unique(["email"])
 export class User {
   @PrimaryGeneratedColumn()
   id?: number
@@ -18,7 +20,7 @@ export class User {
   @Column()
   pass?: string
 
-  @Column()
+  @Column({ name: 'email' })
   email?: string
 
   @CreateDateColumn()

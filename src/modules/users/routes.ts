@@ -16,11 +16,17 @@ export default function loginHandler(server, options, next) {
         const credentials = Buffer.from(auth.split(" ")[1],"base64").toString("utf-8")
         const authData = credentials.split(":")
         //console.log(authData)
-        // user id should be derived from database check
-        // const tok = await res.jwtSign({ user_id: credentials.split(":")[0] })
-        const user = await server.db.users.findOne({ email: authData[0], pass: authData[1] })
-        //console.log(JSON.stringify(user))
+        // test password hashing
+        //const hash = await server.bcrypt.hash(authData[1])
+        //console.log("P ",authData[1], ", H: ",hash)
+
+        //const user = await server.db.users.findOne({ email: authData[0], pass: authData[1] })
+        // using hashed passwords! identify user by email
+        const user = await server.db.users.findOne({ email: authData[0]})
         if (!user) throw (httpCodes.AUTH)
+        const match = await server.bcrypt.compare(authData[1],user.pass)
+        if (!match) throw (httpCodes.AUTH)
+        //console.log(JSON.stringify(user))
         const tok = await res.jwtSign({ 
           user_id: user.id ,
           audience:"client", issuer: "fastify"
@@ -30,7 +36,7 @@ export default function loginHandler(server, options, next) {
         if (!tok) throw(httpCodes.AUTH)
         req.log.info(`Login: ${user.id}, ${tok}`)
         res.send({"token":tok})
-      } catch (err) {
+      } catch (err: any) {
         if (err.code)
             res.code(err.code).send({"error":err.msg})
         else

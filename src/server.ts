@@ -22,6 +22,11 @@ function createServer() {
     //server.log.info(`Config: ${msg}`)
   })
 
+  // password hashing
+  server.register(require('fastify-bcrypt'), {
+    saltWorkFactor: 12
+  })
+  
 
   server.register(require('fastify-cors'), { 
     // put your options here
