@@ -6,7 +6,7 @@ export default function loginHandler(server, options, next) {
     },
     async (req, res) => {
       req.log.info(`login complete`)
-      res.send({"token":req.token})
+      //res.send({"token":req.token})
     })
 
     next()

@@ -36,6 +36,8 @@ export default fp((server, opts, next) => {
      //http -v localhost:3000/products  Authorization:"Bearer eyJ.. token .." 
      // authoization goes into header
       await req.jwtVerify()
+      const claims = req.user // this are all claims from the token
+      req.log.info(`Verified user: ${claims.user_id} ...`)
     } catch (err) {
       res.send(err)
     }
@@ -55,7 +57,7 @@ export default fp((server, opts, next) => {
       const authData = credentials.split(":")
       // user id should be derived from database check
       // const tok = await res.jwtSign({ user_id: credentials.split(":")[0] })
-      //if (authData[0] == "user") throw ("fake")
+      if (authData[0] == "user") throw ("fake")
       const uid = 42 // get from database else thow "not authorized" 
       /* payload options are
         * `audience`
@@ -67,16 +69,14 @@ export default fp((server, opts, next) => {
         * `keyid`
       */
       const tok = await res.jwtSign({ user_id: uid ,
-        audience:"fastify", issuer: "server"
+        audience:"client", issuer: "fastify"
       },
         {expiresIn:3600})
       if (!tok) throw("not authorized")
-      req.uid = uid
-      req.token = tok
-      req.log.info(`Login: ${req.uid}, ${req.token}`)
-      //res.send(tok)
+      req.log.info(`Login: ${uid}, ${tok}`)
+      res.send({"token":tok})
     } catch (err) {
-      req.log.warn(`Login error: ${err}`)
+      req.log.info(`Login error: ${err}`)
       res.code(500).send({"error":err})
     }
   })
