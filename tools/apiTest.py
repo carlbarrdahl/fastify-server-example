@@ -9,10 +9,10 @@ import subprocess
 import json
 
 
-PROC_MSGS = 10000
+PROC_MSGS = 400
 CMD = "./products.py"
 
-PROCS = 100
+PROCS = 25
 
 def runtest(i):
         args = " ".join([CMD,str(PROC_MSGS)])

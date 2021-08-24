@@ -18,8 +18,8 @@ function createServer() {
       throw ("Invalid config")
     }
     //console.log("after",server.config)
-    const msg = JSON.stringify(server.config)
-    server.log.info(`Config: ${msg}`)
+    //const msg = JSON.stringify(server.config)
+    //server.log.info(`Config: ${msg}`)
   })
 
 
