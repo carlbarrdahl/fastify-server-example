@@ -9,7 +9,7 @@ import inventoryHandler from "./modules/inventory/routes"
 import loginHandler from "./modules/users/routes"
 
 function createServer() {
-  const server = fastify({ logger: { prettyPrint: true, level: 'info' } })
+  const server = fastify({ logger: { prettyPrint: true, level: 'warn' } })
 
   server.register(env)
   server.after(() => {
