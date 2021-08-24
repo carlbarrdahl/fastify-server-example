@@ -36,3 +36,24 @@ http -v localhost:3000/products authorization:"Bearer eyJhbGciOiJIUzI1NiIsInR5cC
 
 Tokens expires after 1 hour ..
 
+
+# HTTP Status codes
+See [https://en.wikipedia.org/wiki/List_of_HTTP_status_codes](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
+
+200: OK,
+201: After successfull POST
+
+400 Bad Request
+    The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, size too large, invalid request message framing, or deceptive request routing).[31]
+
+401 Unauthorized (RFC 7235)
+    Similar to 403 Forbidden, but specifically for use when authentication is required and has failed or has not yet been provided. The response must include a WWW-Authenticate header field containing a challenge applicable to the requested resource. See Basic access authentication and Digest access authentication.[32] 401 semantically means "unauthorised",[33] the user does not have valid authentication credentials for the target resource.
+
+410 Gone
+    Indicates that the resource requested is no longer available and will not be available again. This should be used when a resource has been intentionally removed and the resource should be purged. Upon receiving a 410 status code, the client should not request the resource in the future. Clients such as search engines should remove the resource from their indices.[42] Most use cases do not require clients and search engines to purge the resource, and a "404 Not Found" may be used instead.
+
+500 Internal Server Error
+    A generic error message, given when an unexpected condition was encountered and no more specific message is suitable.[62]
+501 Not Implemented
+    The server either does not recognize the request method, or it lacks the ability to fulfil the request. Usually this implies future availability (e.g., a new feature of a web-service API).[63]
+
