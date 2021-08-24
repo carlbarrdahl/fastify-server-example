@@ -5,7 +5,7 @@ export default function loginHandler(server, options, next) {
       preHandler: [server.login] 
     },
     async (req, res) => {
-      req.log.info(`XX: login ${req.user}`)
+      req.log.info(`login complete`)
       res.send({"token":req.token})
     })
 
