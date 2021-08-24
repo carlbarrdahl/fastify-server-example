@@ -56,10 +56,24 @@ export default fp((server, opts, next) => {
       // user id should be derived from database check
       // const tok = await res.jwtSign({ user_id: credentials.split(":")[0] })
       //if (authData[0] == "user") throw ("fake")
-      const tok = await res.jwtSign({ user_id: 42} , {expiresIn:3600})
-      req.user = authData[0]
+      const uid = 42 // get from database else thow "not authorized" 
+      /* payload options are
+        * `audience`
+        * `issuer`
+        * `jwtid`
+        * `subject`
+        * `noTimestamp`
+        * `header`
+        * `keyid`
+      */
+      const tok = await res.jwtSign({ user_id: uid ,
+        audience:"fastify", issuer: "server"
+      },
+        {expiresIn:3600})
+      if (!tok) throw("not authorized")
+      req.uid = uid
       req.token = tok
-      req.log.info(`Login: ${req.user}, ${req.token}`)
+      req.log.info(`Login: ${req.uid}, ${req.token}`)
       //res.send(tok)
     } catch (err) {
       req.log.warn(`Login error: ${err}`)
