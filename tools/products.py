@@ -45,6 +45,7 @@ hdr = {
     "authorization": f"Bearer {token}"
     }
 
+print("Url:",BASEURL)
 
 for i in range(msgs):
     try:
