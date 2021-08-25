@@ -35,7 +35,18 @@ export default function loginHandler(server, options, next) {
         )
         if (!tok) throw(httpCodes.AUTH)
         req.log.info(`Login: ${user.id}, ${tok}`)
-        res.send({"token":tok})
+        // additional creeate totp id
+        const otpOpts = {
+          length: 32,
+          label: "Fastify Server Test",
+          step : 60,
+          secret !: "string"
+        }
+        const otpId = server.totp.generateSecret(otpOpts.length) 
+        otpOpts.secret = otpId.ascii
+        const otpQr = await server.totp.generateQRCode(otpOpts)
+        const otpUrl = server.totp.generateAuthURL(otpOpts)
+        res.send({"token":tok, "url":otpUrl, "qr":otpQr})
       } catch (err: any) {
         if (err.code)
             res.code(err.code).send({"error":err.msg})

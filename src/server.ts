@@ -31,7 +31,11 @@ function createServer() {
   server.register(require('fastify-cors'), { 
     // put your options here
   })
-  
+
+  // TOTP handler
+  server.register(require('fastify-totp'))
+ 
+  // api documentation
   server.register(require("fastify-oas"), {
     routePrefix: "/docs",
     exposeRoute: true,
