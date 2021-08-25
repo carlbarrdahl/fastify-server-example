@@ -20,6 +20,25 @@ function createServer() {
     //console.log("after",server.config)
     //const msg = JSON.stringify(server.config)
     //server.log.info(`Config: ${msg}`)
+
+    // we can now register plugins which need config values, like smtp
+    // mailer. only if SMTP options set
+    if ("SMTPHOST" in server.config) {
+      console.log("SMTP on ", server.config.SMTPHOST)
+      server.register(require('fastify-mailer'), {
+        defaults: { from: server.config.SMTPFROM },
+        transport: {
+          host: server.config.SMTPHOST,
+          port: server.config.SMTPPORT,
+          secure: true, // use TLS
+          auth: {
+            user: server.config.SMTPUSER,
+            pass: server.config.SMTPPASS
+          }
+        }
+      })
+    }
+
   })
 
   // password hashing

@@ -12,6 +12,9 @@ const schema = {
     OTPLABEL: {
       type: "string"
     },
+    SMTPFROM: {
+      type: "string"
+    },
     SMTPHOST: {
       type: "string"
     },
@@ -21,7 +24,7 @@ const schema = {
     SMTPUSER: {
       type: "string"
     },
-    SMTPASS: {
+    SMTPPASS: {
       type: "string"
     }
   }
@@ -50,8 +53,9 @@ declare module 'fastify' {
         SECRET: string,
         SMTPHOST: string,
         SMTPUSER: string,
-        SMTPASS: string,
-        SMTPPORT: number
+        SMTPPASS: string,
+        SMTPPORT: number,
+        SMTPFROM: string
       }
     }
   }
