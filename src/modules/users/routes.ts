@@ -38,7 +38,7 @@ export default function loginHandler(server, options, next) {
         // additional creeate totp id
         const otpOpts = {
           length: 32,
-          label: "Fastify Server Test",
+          label: server.config.OTPLABEL, //"Fastify Server Test",
           step : 60,
           secret !: "string"
         }

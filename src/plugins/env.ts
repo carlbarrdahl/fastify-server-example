@@ -4,15 +4,24 @@ import fp from "fastify-plugin"
 
 const schema = {
   type: 'object',
-  required: ['SECRET'],
+  required: ['SECRET',"OTPLABEL"],
   properties: {
-    KEY1: {
-      type: 'string'
-    },
-    KEY2: {
-      type: 'number'
-    },
     SECRET: {
+      type: "string"
+    },
+    OTPLABEL: {
+      type: "string"
+    },
+    SMTPHOST: {
+      type: "string"
+    },
+    SMTPPORT: {
+      type: "number"
+    },
+    SMTPUSER: {
+      type: "string"
+    },
+    SMTPASS: {
       type: "string"
     }
   }
@@ -37,9 +46,13 @@ declare module 'fastify' {
       config: 
         //env.properties
       { 
-        KEY1: string,
-        KEY2: number
-      };
+        OTPLABEL: string,
+        SECRET: string,
+        SMTPHOST: string,
+        SMTPUSER: string,
+        SMTPASS: string,
+        SMTPPORT: number
+      }
     }
   }
 
