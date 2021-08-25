@@ -26,7 +26,12 @@ CMD = "./products.py"
 
 PROCS = 25
 
-MODULO = 5 # number of running fastify servers
+if len(sys.argv) > 1:
+        MODULO = int(sys.argv[1]) # number of running fastify servers
+else:
+        MODULO = 0 # number of running fastify servers
+
+print("Modulo:", MODULO)
 # start servers like: export PORT=300x; node dist/src/index.js
 
 def runtest(i):

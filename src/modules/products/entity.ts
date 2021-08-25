@@ -3,7 +3,7 @@ import {
   PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
-  UpdateDateColumn
+  UpdateDateColumn,
 } from "typeorm"
 
 // https://stackoverflow.com/questions/67351411/what-s-the-difference-between-definite-assignment-assertion-and-ambient-declarat
@@ -16,7 +16,10 @@ export class Product {
   @Column()
   name?: string
 
-  @Column()
+  // text/blob is 64kB
+  // mediumtext is 16MB. alternative: mediumblob
+  // longtext/blob is 4GB
+  @Column("mediumtext", {nullable: true})
   image?: string
 
   @Column()
