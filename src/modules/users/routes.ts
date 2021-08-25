@@ -36,17 +36,20 @@ export default function loginHandler(server, options, next) {
         if (!tok) throw(httpCodes.AUTH)
         req.log.info(`Login: ${user.id}, ${tok}`)
         // additional creeate totp id
+        // in reality, we would store otpId in the database once ...
         const otpOpts = {
           length: 32,
           label: server.config.OTPLABEL, //"Fastify Server Test",
           step : 60,
-          secret !: "string"
+          secret !: "string"  // take from database ...
         }
+        // test: create otpId here
         const otpId = server.totp.generateSecret(otpOpts.length) 
         otpOpts.secret = otpId.ascii
-        const otpQr = await server.totp.generateQRCode(otpOpts)
         const otpUrl = server.totp.generateAuthURL(otpOpts)
-        res.send({"token":tok, "url":otpUrl, "qr":otpQr})
+        //const otpQr = await server.totp.generateQRCode(otpOpts)
+        //res.send({"token":tok, "url":otpUrl, "qr":otpQr})
+        res.send({"token":tok, "url":otpUrl})
       } catch (err: any) {
         if (err.code)
             res.code(err.code).send({"error":err.msg})
