@@ -57,3 +57,9 @@ See [https://en.wikipedia.org/wiki/List_of_HTTP_status_codes](https://en.wikiped
 501 Not Implemented
     The server either does not recognize the request method, or it lacks the ability to fulfil the request. Usually this implies future availability (e.g., a new feature of a web-service API).[63]
 
+
+
+## Proxying
+see https://httpd.apache.org/docs/2.4/vhosts/examples.html#proxy
+https://superuser.com/questions/739736/apache-as-reverse-proxy-for-multiple-destinations-and-one-default-destination
+
