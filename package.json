@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "nodemon --watch './src/**/*.ts' --exec ts-node ./src/index.ts",
     "build": "tsc",
+    "start": "node dist/src/index.js",
     "test": "NODE_ENV=test jest --coverage",
     "test:watch": "npm run test -- --watchAll"
   },
@@ -13,25 +14,29 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^8.1.0",
-    "fastify": "^2.8.0",
-    "fastify-jwt": "^1.1.0",
-    "fastify-oas": "^2.3.3",
-    "mssql": "^5.1.0",
-    "pino-pretty": "^3.2.2",
+    "dotenv": "^8.6.0",
+    "fastify": "^3.20.2",
+    "fastify-bcrypt": "^0.1.1",
+    "fastify-cors": "^6.0.2",
+    "fastify-env": "^2.1.1",
+    "fastify-jwt": "^3.0.1",
+    "fastify-mailer": "^2.2.0",
+    "fastify-oas": "^3.0.8",
+    "fastify-totp": "^0.3.0",
+    "mysql": "^2.18.1",
+    "nodemailer": "^6.6.3",
+    "pino-pretty": "^6.0.0",
     "reflect-metadata": "^0.1.13",
-    "sql.js": "^1.0.0",
-    "typeorm": "^0.2.19"
+    "sqlite3": "^5.0.2",
+    "typeorm": "^0.2.37"
   },
   "devDependencies": {
-    "@types/cors": "^2.8.6",
-    "@types/jest": "^24.0.18",
-    "@types/node": "^12.7.5",
-    "jest": "^24.9.0",
-    "nodemon": "^1.19.2",
-    "ts-jest": "^24.1.0",
-    "ts-node": "^8.4.1",
-    "typescript": "^3.6.3"
+    "@types/jest": "^24.9.1",
+    "@types/node": "^12.20.20",
+    "jest": "^27.0.6",
+    "nodemon": "^2.0.12",
+    "ts-jest": "^27.0.5",
+    "ts-node": "^10.2.1",
+    "typescript": "^4.3.5"
   }
 }

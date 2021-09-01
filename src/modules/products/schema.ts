@@ -24,6 +24,31 @@ export const listProductsSchema = {
   }
 }
 
+export const postProductSchema = {
+  summary: "post product",
+  description: "post product",
+  params: {
+    type: "object",
+    //required: ["name", "image", "expires_in", "unit"],
+    properties: {
+      name: { type: "string" },
+      image: { type: "string", format: "uri" },
+      expires_in: {
+        type: "number",
+        description: "expiry time in days"
+      },
+      unit: { type: "string" },
+      //created_at: { type: "string", format: "date-time" },
+      //updated_at: { type: "string", format: "date-time" }
+    }
+  },
+  response: {
+    200: {
+      type: "boolean"
+    }
+  }
+}
+
 export const deleteProductSchema = {
   summary: "delete product",
   description: "delete product",

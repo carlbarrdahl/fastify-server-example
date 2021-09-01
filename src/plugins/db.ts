@@ -3,13 +3,14 @@ import fp from "fastify-plugin"
 import { createConnection, getConnectionOptions } from "typeorm"
 import { Inventory } from "../modules/inventory/entity"
 import { Product } from "../modules/products/entity"
+import { User } from "../modules/users/entity"
 
 export default fp(async server => {
   try {
     const connectionOptions = await getConnectionOptions()
     Object.assign(connectionOptions, {
       options: { encrypt: true },
-      entities: [Inventory, Product]
+      entities: [Inventory, Product, User]
     })
 
     console.log(`connecting to database: ${connectionOptions.type}...`)
@@ -18,7 +19,8 @@ export default fp(async server => {
 
     server.decorate("db", {
       inventory: connection.getRepository(Inventory),
-      products: connection.getRepository(Product)
+      products: connection.getRepository(Product),
+      users: connection.getRepository(User)
     })
   } catch (error) {
     console.log(error)
